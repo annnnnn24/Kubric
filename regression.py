@@ -18,6 +18,19 @@ def predict_price(area) -> float:
     response = requests.get(TRAIN_DATA_URL)
     # YOUR IMPLEMENTATION HERE
     ...
+    X=response[0]
+    Y=response[1]
+    mean_x=sum(X)/len(X)
+    mean_y = sum(Y)/len(Y)
+    
+    xy= X.dot(Y) - n*mean_x*mean_y
+    x_sq=sum (X*X) - n*mean_x**2
+    
+    b1= xy/x_sq
+    b0= mean_y -b1*mean_x
+    
+    pred_y=bo+b1*x
+    return pred_y
 
 
 if __name__ == "__main__":
